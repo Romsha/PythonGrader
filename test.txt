@@ -1,0 +1,263 @@
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+asdas
+asd
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+def a():
+    pass
+class TextParser:
+    """
+    This is my class
+    """
+    MAX_LINE_LEN = 80
+
+    def __init__(self, 
+        source: str,
+        sources: str) -> None:
+        # hello
+        ''' 
+        w
+        '''
+        """asdasdasdasd"""
+        def a():
+            return 1
+        self.sourceLines = source.split('a')
+    
+    def _linesData(self) -> Tuple[int, int]:
+        numLines = len(self.sourceLines)
+        numNotEmpty = len(list(filter(lambda l: l.strip() != '', self.sourceLines)))
+        return numLines, numNotEmpty
+        
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _linesData(self) -> Tuple[int, int]:
+        numLines = len(self.sourceLines)
+        numNotEmpty = len(list(filter(lambda l: l.strip() != '', self.sourceLines)))
+        return numLines, numNotEmpty
+        
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+
+    def _linesData(self) -> Tuple[int, int]:
+        numLines = len(self.sourceLines)
+        numNotEmpty = len(list(filter(lambda l: l.strip() != '', self.sourceLines)))
+        return numLines, numNotEmpty
+        
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+    def _longLinesCount(self) -> int:
+        isLong = lambda l: len(l.rstrip()) > self.MAX_LINE_LEN
+        return len(list(filter(isLong, self.sourceLines)))
+
+
+    class B:
+        def c(self):
+            ""
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            a = 1
+            
+            return 's'
