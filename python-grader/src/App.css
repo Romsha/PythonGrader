@@ -1,38 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@200;400;700;900&display=swap');
+
 .App {
+  
+}
+
+.pageTop {
+  width: 100vw;
+  height: 90vh;
+  padding: 5vh 0;
+  background: linear-gradient(to bottom right, #ED6A5A, #F4F1BB);
+  font-size: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  justify-items: center;
+  align-items: center;
+  font-family: 'Geologica', sans-serif;
+}
+
+h1 {
+  margin: 0;
+  font-size: 70px;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  font-weight: 900;
+  text-shadow: 4px 4px #54577C30;
+}
+
+h2 {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.headline {
+  color: #54577C;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dropContainer {
+  font-weight: 400;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  column-gap: 20px;
+  font-size: 30px;
+  align-items: center;
+  border: 5px solid blanchedalmond;
+  padding: 30px 50px;
+  border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.dropText {
+  color: #54577C;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.dropOr {
+  color: #54577C7A;
+}
+
+.Toastify__toast-body {
+  font-family: 'Geologica', sans-serif;
+}
+
+.dragView {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: gray;
+  opacity: .5;
+  font-weight: 700;
+  font-size: 50px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.trash {
+  opacity: 1;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  width: 150px;
+  height: auto;
 }

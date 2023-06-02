@@ -112,6 +112,14 @@ class ASTParser:
         return data
 
 
+def parseData(source: str) -> dict:
+    data = TextParser(source).getData()
+    try:
+        return data.update(ASTParser(source).getData())
+    except:
+        return {}
+        
+
 def main():
     source = open('test.txt').read()
     print(ASTParser(source).getData())

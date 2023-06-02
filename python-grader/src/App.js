@@ -1,23 +1,111 @@
-import logo from './logo.svg';
 import './App.css';
+import FileInputButton from './Components/FileInpuButton/FileInputButton';
+import {useState} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import TrashOpened from './assets/TrashFull.png';
+import TrashClosed from './assets/TrashEmpty.png';
+import ParamsText from './Components/ParamsText/ParamsText';
 
 function App() {
+  const [fileObj, setFileObj] = useState(null);
+  const [draging, setDraging] = useState(false);
+  const [dragingTrash, setDragingTrash] = useState(false);
+
+  const fileHandler = (fileObj) => {
+    if (fileObj.name.endsWith('.zip') || fileObj.name.endsWith('.py')) {
+      setFileObj(fileObj);
+    } else {
+      toast("We only support .py and .zip files");
+    }
+  }
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    if (dragingTrash) {
+      setDragingTrash(false);
+    } else {
+      const files = event.dataTransfer.files;
+      fileHandler(files[0]);
+    }
+    setDraging(false);
+  };
+
+  const handleDragEnter = (event) => {
+    event.preventDefault();
+    setDraging(true);
+  };
+
+  const handleDragEnterTrash = (event) => {
+    event.preventDefault();
+    setDragingTrash(true)
+  }
+
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    if (dragingTrash) {
+      setDragingTrash(false);
+    } else {
+      if (!event.currentTarget.contains(event.relatedTarget)) {
+        setDraging(false);
+      }
+    }
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div 
+        className="pageTop"
+        onDrop={handleDrop}
+        onDragEnter={handleDragEnter}>
+        <div className="headline">
+          <h1 className="headline">Python Code Grader</h1>
+          <h2 className="headline">Find out how pretty is your code</h2>
+        </div>
+        <div className="dropContainer">
+          <div className="dropText">Drop your file anywhere on this area</div>
+          <div className="dropOr">OR</div>
+          <FileInputButton 
+            fileHandler={fileHandler}
+            fileName={fileObj ? fileObj.name : "Choose File"}
+            />
+        </div>
+        <ParamsText />
+      </div>
+      {draging ? <div 
+        className="dragView"
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDragEnter={handleDragEnter}>
+          Drop anywhere
+          <img 
+            className="trash"
+            src={dragingTrash ? TrashOpened : TrashClosed} 
+            alt="trash"
+            onDrop={handleDrop}
+            onDragEnter={handleDragEnterTrash}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}/>
+        </div> : ''}
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        progressStyle={{background: "#ED6A5A"}}
+      />
     </div>
   );
 }

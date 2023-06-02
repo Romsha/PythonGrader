@@ -1,0 +1,26 @@
+.button {
+    display: none;
+}
+
+.buttonLabel {
+    background: #4BA3C3;
+    border-radius: 5px;
+    border: 2px solid #5BC0EB;
+    font-size: inherit;
+    color: white;
+    font-family: inherit;
+    padding: 5px 10px;
+    box-shadow: 7px 7px #54577C36;
+    transition: all .1s ease-in-out;
+  }
+  
+  .buttonLabel:hover {
+    box-shadow: 5px 5px #54577C69;
+    transform: translate(1px, 1px);
+    cursor: pointer;
+  }
+  
+  .buttonLabel:active {
+    box-shadow: 2px 2px #54577C80;
+    transform: translate(2px, 2px);
+  }
