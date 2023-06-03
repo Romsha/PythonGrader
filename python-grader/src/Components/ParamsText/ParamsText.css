@@ -1,7 +1,7 @@
 .paramsContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    color: #54577C;
+    color: #d8dcff;
 }
 
 .paramsSectionTitle {
@@ -19,7 +19,7 @@
     bottom: 0;
     width: 105%;
     height: 4px; 
-    background: #4BA3C3;
+    background: #aeadf0;
     z-index: -1;
 }
 
