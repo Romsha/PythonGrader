@@ -115,7 +115,8 @@ class ASTParser:
 def parseData(source: str) -> dict:
     data = TextParser(source).getData()
     try:
-        return data.update(ASTParser(source).getData())
+        data.update(ASTParser(source).getData())
+        return data
     except:
         return {}
         

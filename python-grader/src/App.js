@@ -8,13 +8,33 @@ import TrashClosed from './assets/TrashEmpty.png';
 import ParamsText from './Components/ParamsText/ParamsText';
 
 function App() {
-  const [fileObj, setFileObj] = useState(null);
+  const [fileName, setFileName] = useState(null);
   const [draging, setDraging] = useState(false);
   const [dragingTrash, setDragingTrash] = useState(false);
 
+  const sendRequest = (fileName, fileContent) => {
+    const postData = { name: fileName, content: fileContent };
+    fetch('http://localhost:12345/parseFile/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+
   const fileHandler = (fileObj) => {
     if (fileObj.name.endsWith('.zip') || fileObj.name.endsWith('.py')) {
-      setFileObj(fileObj);
+      setFileName(fileObj.name);
+      fileObj.text().then((data) => sendRequest(fileObj.name, data));
     } else {
       toast("We only support .py and .zip files");
     }
@@ -72,7 +92,7 @@ function App() {
           <div className="dropOr">OR</div>
           <FileInputButton 
             fileHandler={fileHandler}
-            fileName={fileObj ? fileObj.name : "Choose File"}
+            fileName={fileName ? fileName : "Choose File"}
             />
         </div>
         <ParamsText />

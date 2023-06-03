@@ -17,7 +17,7 @@ export default function FileInputButton(props) {
     return (
         <>
         <input id="fileInput" className="button" type="file" onChange={handleFileChange} />
-        <label for="fileInput" className="buttonLabel">
+        <label htmlFor="fileInput" className="buttonLabel">
             {formatFileName(props.fileName)}
         </label>
         </>
