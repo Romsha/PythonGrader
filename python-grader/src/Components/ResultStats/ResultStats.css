@@ -1,0 +1,36 @@
+.statsContainer {
+    width: 100vw;
+    height: 95vh;
+    padding: 0;
+    padding-bottom: 5vh;
+
+    background-color: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 100 100'%3E%3Crect x='0' y='0' width='21' height='21' fill-opacity='0.25' fill='%23EE5522'/%3E%3C/svg%3E");
+
+    display: grid;
+    grid-template-rows: max-content 1fr;
+}
+
+.statsTitle {
+    background: #EE5522;
+    background: linear-gradient(to bottom right, #EE5522, #FFBB33);
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    padding: 40px 0;
+    margin: 0;
+}
+
+.resultsContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-items: center;
+    padding: 0 30px;
+}
+
+.resultsRowTitle {
+    color: #EE5522;
+    text-shadow: 3px 3px #E8C8BD;
+    font-size: 50px;
+}

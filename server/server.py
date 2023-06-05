@@ -13,7 +13,7 @@ def receive_data():
     if parseResult == {}:
         response = {'success': False}
     else:
-        response = {'success': True, 'data': parseResult} 
+        response = {'success': True, 'name': data['name'], 'data': parseResult} 
     return jsonify(response)
 
 if __name__ == '__main__':

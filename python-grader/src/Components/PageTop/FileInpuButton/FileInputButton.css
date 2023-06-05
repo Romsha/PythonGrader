@@ -3,9 +3,9 @@
 }
 
 .buttonLabel {
-    background: #aeadf0;
+    background: #ee5522;
     border-radius: 5px;
-    border: 2px solid #d8dcff;
+    border: 2px solid #ffffff;
     font-size: inherit;
     color: white;
     font-family: inherit;
@@ -21,6 +21,6 @@
   }
   
   .buttonLabel:active {
-    box-shadow: 2px 2px #d8dcff90;
+    box-shadow: 2px 2px #ffffff90;
     transform: translate(2px, 2px);
   }

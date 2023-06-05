@@ -20,7 +20,7 @@ class TextParser:
 
     def getData(self) -> dict:
         data = {}
-        data['numLines'], data['numNotEmpty'] = self._linesData()
+        data['numLines'], data['numNotEmptyLines'] = self._linesData()
         data['numLongLines'] = self._longLinesCount()
         return data
 
