@@ -2,10 +2,12 @@ import './ResultStats.css';
 import { useState, useEffect } from 'react';
 import { animateScroll } from 'react-scroll';
 import StatDisplay, {TYPES as STATS_TYPES} from './StatDisplay/StatDisplay'
+import FileMenu from './FileMenu/FileMenu';
 
 export default function ResultStats(props) {
     const [allData, setAllData] = useState(null);
     const [currentFile, setCurrentFile] = useState(null);
+    const [showingMenu, setShowingMenu] = useState(false);
 
     const RES_TYPES = {ZIP: 'ZIP', PY: 'PY'};
     const SUM_KEYS = ['numClasses', 'numNotEmptyLines', 'numFuncs', 'filesNum'];
@@ -86,13 +88,25 @@ export default function ResultStats(props) {
         calcData();
     }, []);
 
+    const selectFile = (fileName) => {
+        if (fileName === currentFile.name) { return }
+        if (fileName === allData.total.name) {
+            setCurrentFile(allData.total);
+        } else {
+            setCurrentFile({ name: fileName, grades: allData.files[fileName] });
+        }
+        setShowingMenu(false);
+    }
+
     if (!currentFile) {return <div/>}    
-
-    console.log(allData);
-
     return (
+        <>
         <div className="statsContainer">
-            <h1 className="statsTitle title">Stats for file: {currentFile.name}</h1>
+            <h1 className="statsTitle title">
+                Stats for file: {currentFile.name.length > 22 ? '...'+currentFile.name.slice(-22) : currentFile.name}
+                {Object.keys(allData.files).length > 0 ? 
+                    <div className="hamburger" onClick={() => setShowingMenu(true)}><div/><div/><div/></div> : ''}
+            </h1>
             <div className="resultsContainer">
                 <h2 className="resultsRowTitle">Basic<br/>Stats:</h2>
                 <StatDisplay type={STATS_TYPES.NUMBER} data={currentFile.grades.filesNum} label="files" />
@@ -136,5 +150,11 @@ export default function ResultStats(props) {
                     label="total grade" />
             </div>
         </div>
+        {showingMenu ? <FileMenu 
+                            fileNames={[allData.total.name].concat(Object.keys(allData.files))}
+                            fileGrades={[allData.total.grades.totalGrade].concat(Object.values(allData.files).map(grades => grades.totalGrade))} 
+                            selectFile={selectFile}
+                            closeMenu={() => setShowingMenu(false)}/> : ''}
+        </>
     )
 }

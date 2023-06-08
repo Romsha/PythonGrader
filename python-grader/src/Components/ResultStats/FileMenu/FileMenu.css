@@ -1,0 +1,92 @@
+.fileMenu {
+    position: fixed;
+    top: 0;
+    height: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fecda3a9;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.fileMenuBG {
+    position: relative;
+    box-sizing: border-box;
+    width: 70%;
+    max-height: 70vh;
+    padding: 30px 50px;
+    padding-bottom: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 10px 7px #1b191916;
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    gap: 30px;
+}
+
+.fileMenuTitle {
+    font-size: 50px;
+}
+
+.fileMenuList {
+    border-radius: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.fileMenuItem {
+    font-size: 25px;
+    padding: 10px 20px;
+    border-bottom: 2px solid lightgrey;
+    transition: background-color .3s;
+    display: grid;
+    grid-template-columns: repeat(2, max-content) 1fr repeat(2, max-content);
+    align-items: center;
+}
+
+.fileMenuItemZip {
+    grid-template-columns:  repeat(3, max-content) 1fr repeat(2, max-content);
+}
+
+.fileMenuItem:last-child {
+    border-bottom: none;
+}
+
+.fileMenuItem:hover {
+    cursor: pointer;
+    background-color: #edecec;
+}
+
+.fileMenuItem > img {
+    height: 20px;
+    width: auto;
+    margin-right: 10px;
+    opacity: .5;
+}
+.fileMenuZip {
+    font-weight: 700;
+    color: #ee5522;
+    margin-right: 10px;
+}
+
+.fileMenuIndex {
+    color: #afafaf;
+    margin-right: 10px;
+}
+
+.fileMenuGrade {
+    text-align: right;
+}
+
+.menuGoodGrade {
+    color: green;
+}
+
+.menuMedGrade {
+    color: #e39104;
+}
+
+.menuBadGrade {
+    color: red;
+}
