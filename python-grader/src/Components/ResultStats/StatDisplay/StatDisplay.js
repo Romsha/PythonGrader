@@ -47,10 +47,10 @@ export default function StatDispay(props) {
 
         return (
             <div className={"statContainer " + (props.hasOwnProperty('total') ? 'statTotal' : '')} ref={componentRef}>
-                <div class={"gauge " + gaugeCls}>
-                    <div class="percentage" style={{ transform: `rotate(${perc}deg)` }}></div>
-                    <div class="mask"></div>
-                    <span class="value">{props.data}<span className="statDataUnit">%</span></span>
+                <div className={"gauge " + gaugeCls}>
+                    <div className="percentage" style={{ transform: `rotate(${perc}deg)` }}></div>
+                    <div className="mask"></div>
+                    <span className="value">{props.data}<span className="statDataUnit">%</span></span>
                 </div>
                 <div className="statLabel">{props.label}</div>
             </div>

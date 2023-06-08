@@ -9,15 +9,13 @@ import ResultStats from './Components/ResultStats/ResultStats';
 function App() {
   const [resData, setResData] = useState(null);
 
-  const sendRequest = (fileName, fileContent) => {
+  const sendRequest = (fileObj) => {
     setResData(null);
-    const postData = { name: fileName, content: fileContent };
+    const data = new FormData()
+    data.append('file', fileObj);
     fetch('http://localhost:12345/parseFile/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
+      body: data
     })
     .then(response => response.json())
     .then(data => {

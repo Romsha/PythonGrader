@@ -15,7 +15,7 @@ export default function PageTop(props) {
     const fileHandler = (fileObj) => {
         if (fileObj.name.endsWith('.zip') || fileObj.name.endsWith('.py')) {
           setFileName(fileObj.name);
-          fileObj.text().then((data) => props.sendRequest(fileObj.name, data));
+          props.sendRequest(fileObj);
         } else {
           props.toast("We only support .py and .zip files");
         }

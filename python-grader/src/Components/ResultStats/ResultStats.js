@@ -1,69 +1,137 @@
 import './ResultStats.css';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { animateScroll } from 'react-scroll';
 import StatDisplay, {TYPES as STATS_TYPES} from './StatDisplay/StatDisplay'
 
 export default function ResultStats(props) {
+    const [allData, setAllData] = useState(null);
+    const [currentFile, setCurrentFile] = useState(null);
+
+    const RES_TYPES = {ZIP: 'ZIP', PY: 'PY'};
+    const SUM_KEYS = ['numClasses', 'numNotEmptyLines', 'numFuncs', 'filesNum'];
+
+    const getSafePerc = (value, total) => {
+        if (total === 0) {
+            return 100;
+        }
+        return Math.round(value * 100.0 / total);
+    }
+
+    const calcFileData = (fileData) => {
+        const fileGrades =  {
+            longLines: 100-getSafePerc(fileData.numLongLines, fileData.numNotEmptyLines),
+            docClasses: getSafePerc(fileData.numDocClasses, fileData.numClasses),
+            docFuncs: getSafePerc(fileData.numDocFuncs, fileData.numFuncs),
+            longClasses: 100-getSafePerc(fileData.numBigClasses, fileData.numClasses),
+            longFuncs: 100-getSafePerc(fileData.numLongFuncs,fileData.numFuncs),
+            docSize: fileData.isDocBig ? 0 : 100
+        };
+        const totalGrade = Math.round(Object.values(fileGrades).reduce((sum, cur) => (sum+cur), 0) / Object.values(fileGrades).length);
+        fileGrades.totalGrade = totalGrade;
+        for (let key of SUM_KEYS) {
+            fileGrades[key] = fileData[key];
+        }
+        fileGrades.filesNum = 1;
+        return fileGrades;
+    }
+
+    const totalGrades = (gradesArr) => {
+        const total = {};
+        for (let key of Object.keys(gradesArr[0])) {
+            const sum = gradesArr.map(g => g[key]).reduce((s, v) => s+v, 0);
+            if (SUM_KEYS.includes(key)) {
+                total[key] = sum;
+            } else {
+                total[key] = Math.round(sum / gradesArr.length);
+            }
+        }
+        return total;
+    }
+
+    const calcData = () => {
+        const data = {
+            total: {name: '', grades: {}},
+            files: {}
+        }
+
+        // TODO: handle error
+        if (!props.data.success) { return }
+        data.total.name = props.data.name;
+
+        if (props.data.type === RES_TYPES.PY) {
+            data.total.grades = calcFileData(props.data.data);
+        } else {
+            const allFilesData = props.data.data;
+            const allFilesGrades = [];
+            for (let fileRes of allFilesData) {
+                if (!fileRes.success) { continue }
+                // TODO: handle error
+                const fileGrades = calcFileData(fileRes.data)
+                allFilesGrades.push(fileGrades);
+                data.files[fileRes.name] = fileGrades;
+            }
+            data.total.grades = totalGrades(allFilesGrades);
+        }
+
+        setAllData(data);
+        setCurrentFile(data.total);
+    }
+
     useEffect(() => {
         animateScroll.scrollToBottom({
           duration: 1500, 
           delay: 100, 
           smooth: true,
         });
+        calcData();
     }, []);
 
-    const grades = {
-        longLines: 100-Math.round(props.data.data.numLongLines * 100.0 / props.data.data.numNotEmptyLines),
-        docClasses: Math.round(props.data.data.numDocClasses * 100.0 / props.data.data.numClasses),
-        docFuncs: Math.round(props.data.data.numDocFuncs * 100.0 /props.data.data.numFuncs),
-        longClasses: 100-Math.round(props.data.data.numBigClasses * 100.0 / props.data.data.numClasses),
-        longFuncs: 100-Math.round(props.data.data.numLongFuncs * 100.0 /props.data.data.numFuncs),
-        docSize: props.data.data.isDocBig ? 50 : 100
-    }
-    const totalGrage = Math.round(Object.values(grades).reduce((sum, cur) => (sum+cur), 0) / Object.values(grades).length);
+    if (!currentFile) {return <div/>}    
+
+    console.log(allData);
 
     return (
         <div className="statsContainer">
-            <h1 className="statsTitle title">Stats for file: {props.data.name}</h1>
+            <h1 className="statsTitle title">Stats for file: {currentFile.name}</h1>
             <div className="resultsContainer">
                 <h2 className="resultsRowTitle">Basic<br/>Stats:</h2>
-                <StatDisplay type={STATS_TYPES.NUMBER} data={1} label="files" />
-                <StatDisplay type={STATS_TYPES.NUMBER} data={props.data.data.numNotEmptyLines} label="lines" />
-                <StatDisplay type={STATS_TYPES.NUMBER} data={props.data.data.numClasses} label="classes" />
-                <StatDisplay type={STATS_TYPES.NUMBER} data={props.data.data.numFuncs} label="functions" />
+                <StatDisplay type={STATS_TYPES.NUMBER} data={currentFile.grades.filesNum} label="files" />
+                <StatDisplay type={STATS_TYPES.NUMBER} data={currentFile.grades.numNotEmptyLines} label="lines" />
+                <StatDisplay type={STATS_TYPES.NUMBER} data={currentFile.grades.numClasses} label="classes" />
+                <StatDisplay type={STATS_TYPES.NUMBER} data={currentFile.grades.numFuncs} label="functions" />
 
                 <h2 className="resultsRowTitle">Style<br/>Stats:</h2>
                 <StatDisplay 
                     type={STATS_TYPES.PERC} 
-                    data={grades.longLines} 
+                    data={currentFile.grades.longLines} 
                     label="good length lines" />
                 <StatDisplay 
                     type={STATS_TYPES.PERC} 
-                    data={grades.docClasses} 
+                    data={currentFile.grades.docClasses} 
                     label="documented classes" />
                 <StatDisplay 
                     type={STATS_TYPES.PERC} 
-                    data={grades.docFuncs} 
+                    data={currentFile.grades.docFuncs} 
                     label="documented functions" />
                 <StatDisplay 
                     type={STATS_TYPES.PERC} 
-                    data={grades.longClasses} 
+                    data={currentFile.grades.longClasses} 
                     label="good length classes" />
                 
                 <div/>
                 <StatDisplay 
                     type={STATS_TYPES.PERC} 
-                    data={grades.longFuncs} 
+                    data={currentFile.grades.longFuncs} 
                     label="good length functions" />
                 <StatDisplay 
                     type={STATS_TYPES.BOOL} 
-                    value={!props.data.data.isDocBig}
-                    data={props.data.data.isDocBig ? 'Too Big' : 'Great'} 
+                    value={currentFile.grades.docSize === 100}
+                    data={currentFile.grades.docSize === 100 ? 'Great' : 'Too Big'} 
                     label="module size" />
                 <div/>
                 <StatDisplay 
                     type={STATS_TYPES.PERC} 
-                    data={totalGrage} 
+                    data={currentFile.grades.totalGrade} 
                     total={true}
                     label="total grade" />
             </div>

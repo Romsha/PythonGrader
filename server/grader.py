@@ -6,8 +6,8 @@ from queue import Queue
 class TextParser:
     ALLOWED_LINE_LEN = 80
 
-    def __init__(self, source: str) -> None:
-        self.sourceLines = source.split('\n')
+    def __init__(self, source: bytes) -> None:
+        self.sourceLines = source.split(b'\n')
 
     def _linesData(self) -> Tuple[int, int]:
         numLines = len(self.sourceLines)
