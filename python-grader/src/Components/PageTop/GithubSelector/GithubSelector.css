@@ -1,0 +1,74 @@
+.github {
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: repeat(3, max-content) ;
+    column-gap: 20px;
+    font-size: 30px;
+    align-items: center;
+    color: white;
+}
+
+.urlContainer {
+    background-color: white;
+    font-size: 25px;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    padding: 5px 10px;
+    border-radius: 5px;
+    gap: 2px;
+}
+
+.urlDomain {
+    color: #7a7878;
+}
+
+.urlInput {
+    font-size: inherit;
+    font-family: inherit;
+    border: none;
+    color: black;
+    padding: 0;
+}
+
+.urlInput::placeholder {
+    color: lightgray;
+    opacity: 1;
+}
+
+.urlInput:focus {
+    outline: none;
+}
+
+.submitBtn {
+    background: #ee5522;
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+    font-size: 25px;
+    color: white;
+    font-family: inherit;
+    padding: 5px 10px;
+    box-shadow: 6px 6px #b8b7fb50;
+    transition: all .1s ease-in-out;
+  }
+  
+  .submitBtn:hover {
+    box-shadow: 4px 4px #b8b7fb60;
+    transform: translate(1px, 1px);
+    cursor: pointer;
+  }
+  
+  .submitBtn:active {
+    box-shadow: 2px 2px #ffffff70;
+    transform: translate(2px, 2px);
+  }
+
+  .submitBtn:disabled {
+    color: lightgray;
+    box-shadow: none;
+    background-color: darkgray;
+  }
+
+  .submitBtn:disabled:hover {
+    cursor: not-allowed;
+    transform: none;
+  }

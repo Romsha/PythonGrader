@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { animateScroll } from 'react-scroll';
 import StatDisplay, {TYPES as STATS_TYPES} from './StatDisplay/StatDisplay'
 import FileMenu from './FileMenu/FileMenu';
+import { arraySum, limitFileName } from '../../utils';
 
 export default function ResultStats(props) {
     const [allData, setAllData] = useState(null);
@@ -28,7 +29,7 @@ export default function ResultStats(props) {
             longFuncs: 100-getSafePerc(fileData.numLongFuncs,fileData.numFuncs),
             docSize: fileData.isDocBig ? 0 : 100
         };
-        const totalGrade = Math.round(Object.values(fileGrades).reduce((sum, cur) => (sum+cur), 0) / Object.values(fileGrades).length);
+        const totalGrade = Math.round(arraySum(Object.values(fileGrades)) / Object.values(fileGrades).length);
         fileGrades.totalGrade = totalGrade;
         for (let key of SUM_KEYS) {
             fileGrades[key] = fileData[key];
@@ -40,7 +41,8 @@ export default function ResultStats(props) {
     const totalGrades = (gradesArr) => {
         const total = {};
         for (let key of Object.keys(gradesArr[0])) {
-            const sum = gradesArr.map(g => g[key]).reduce((s, v) => s+v, 0);
+            
+            const sum = arraySum(gradesArr.map(g => g[key]));
             if (SUM_KEYS.includes(key)) {
                 total[key] = sum;
             } else {
@@ -103,7 +105,7 @@ export default function ResultStats(props) {
         <>
         <div className="statsContainer">
             <h1 className="statsTitle title">
-                Stats for file: {currentFile.name.length > 22 ? '...'+currentFile.name.slice(-22) : currentFile.name}
+                Stats for file: {limitFileName(currentFile.name, 20)}
                 {Object.keys(allData.files).length > 0 ? 
                     <div className="hamburger" onClick={() => setShowingMenu(true)}><div/><div/><div/></div> : ''}
             </h1>

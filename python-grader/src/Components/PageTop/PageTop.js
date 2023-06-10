@@ -5,6 +5,7 @@ import TrashClosed from '../../assets/TrashEmpty.png';
 import ParamsText from './ParamsText/ParamsText';
 
 import {useState} from 'react';
+import GithubSelector from './GithubSelector/GithubSelector';
 
 
 export default function PageTop(props) {
@@ -69,12 +70,16 @@ export default function PageTop(props) {
           <h2 className="headline">Find out how pretty is your code</h2>
         </div>
         <div className="dropContainer">
-          <div className="dropText">Drop your file anywhere on this area</div>
-          <div className="dropOr">OR</div>
-          <FileInputButton 
-            fileHandler={fileHandler}
-            fileName={fileName ? fileName : "Choose File"}
-            />
+          <div className="dropFile">
+            <div className="dropText">Drop your file anywhere on this page</div>
+            <div className="dropOr">OR</div>
+            <FileInputButton 
+              fileHandler={fileHandler}
+              fileName={fileName ? fileName : "Choose File"}
+              />
+          </div>
+          <div className="dropSeperator"/>
+          <GithubSelector submit={(o, r) => props.gihubRequest(o, r)}/>
         </div>
         <ParamsText />
       </div>

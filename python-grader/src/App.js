@@ -28,11 +28,28 @@ function App() {
     });
   }
 
+  const gihubRequest = (owner, repo) => {
+    setResData(null);
+    fetch(`http://localhost:12345/parseGithub?owner=${owner}&repo=${repo}`, {
+      method: 'GET',
+    })
+    .then(response => response.json())
+    .then(data => {
+      // TODO: handle success=False
+      setResData(data);
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
   return (
     <div className="App">
       <PageTop 
         sendRequest={sendRequest}
-        toast={toast}/>
+        toast={toast}
+        gihubRequest={gihubRequest}/>
       <ToastContainer
         position="bottom-center"
         autoClose={2000}

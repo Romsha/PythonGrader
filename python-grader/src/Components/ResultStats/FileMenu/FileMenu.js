@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import './FileMenu.css';
 import GaugeIcon from '../../../assets/GaugeIcon.png'
+import { limitFileName } from '../../../utils';
 
 export default function FileMenu(props) {
     
@@ -22,7 +23,8 @@ export default function FileMenu(props) {
         return cls;
     }
     
-
+    const MAX_NAME_LEN = 60;
+    
     return (
         <div className="fileMenu" onClick={props.closeMenu}>
             <div className="fileMenuBG" onClick={(event) => event.stopPropagation()}>
@@ -31,9 +33,9 @@ export default function FileMenu(props) {
                     <div className="fileMenuItem fileMenuItemZip" onClick={() => props.selectFile(props.fileNames[0])}>
                         <span className="fileMenuIndex">1.</span>
                         <span className="fileMenuZip">ZIP</span>
-                        <span>{props.fileNames[0]}</span>
+                        <span>{limitFileName(props.fileNames[0], MAX_NAME_LEN-4)}</span>
                         <div />
-                        <img src={GaugeIcon} />
+                        <img src={GaugeIcon} alt="gague icon"/>
                         <span className={getGradeClass(props.fileGrades[0])}>{props.fileGrades[0]}</span>
                     </div>
                     {props.fileNames.slice(1).map((name, index) => 
@@ -42,9 +44,9 @@ export default function FileMenu(props) {
                             className="fileMenuItem"
                             onClick={() => props.selectFile(name)}>
                                 <span className="fileMenuIndex">{index+2}.</span>
-                                <span>{name}</span>
+                                <span>{limitFileName(name, MAX_NAME_LEN)}</span>
                                 <div />
-                                <img src={GaugeIcon} />
+                                <img src={GaugeIcon} alt="gague icon"/>
                                 <span className={getGradeClass(props.fileGrades[index+1])}>{props.fileGrades[index+1]}</span>
                     </div>)}
                 </div>

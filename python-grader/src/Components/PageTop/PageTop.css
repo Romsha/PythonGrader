@@ -37,16 +37,23 @@ h2 {
 }
   
 .dropContainer {
+    border: 5px solid #ffef62;
+    padding: 30px 50px;
+    border-radius: 10px;
+    background: #ee5522;
+    display: grid;
+    grid-template-rows: repeat(3, max-content);
+    gap: 30px;
+    justify-items: center;
+}
+
+.dropFile {
     font-weight: 400;
     display: grid;
     grid-template-columns: auto auto auto;
     column-gap: 20px;
     font-size: 30px;
     align-items: center;
-    border: 5px solid #ffef62;
-    padding: 30px 50px;
-    border-radius: 10px;
-    background: #ee5522;
 }
   
 .dropText {
@@ -55,6 +62,12 @@ h2 {
   
 .dropOr {
     color: #ffffff7A;
+}
+
+.dropSeperator {
+    width: 100%;
+    height: 3px;
+    background: #ffffff7A;
 }
   
 .dragView {

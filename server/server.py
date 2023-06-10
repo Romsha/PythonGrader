@@ -4,6 +4,7 @@ import io
 from typing import Iterable, Tuple
 import zipfile
 import grader
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -50,6 +51,28 @@ def receiveData():
     if requestFile.filename.endswith('.zip'):
         return jsonify(handleZipFile(requestFile.filename, requestFile.stream.read()))
     return jsonify({'success': False, 'name': requestFile.filename})
+
+
+def getRepo(owner, repo):
+    DOMAIN = 'https://api.github.com/repos/{o}/{r}/zipball'
+    url = DOMAIN.format(o=owner, r=repo)
+    print('trying:', url)
+    res = requests.get(url)
+    if res.status_code == 200:
+        print('success')
+        return res.content
+    return None
+
+
+@app.route('/parseGithub/', methods=['GET'])
+def recieveGithubData():
+    owner = request.args.get('owner')
+    repo = request.args.get('repo')
+    repoZip = getRepo(owner, repo)
+    if not repoZip:
+        return jsonify({'success': False, 'name': repo})
+    return jsonify(handleZipFile(repo, repoZip))
+
 
 if __name__ == '__main__':
     app.run(host='localhost', port=12345)

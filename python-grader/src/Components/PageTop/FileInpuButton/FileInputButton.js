@@ -1,3 +1,4 @@
+import { limitFileName } from '../../../utils';
 import './FileInputButton.css';
 
 export default function FileInputButton(props) {
@@ -6,19 +7,11 @@ export default function FileInputButton(props) {
         props.fileHandler(selectedFile);
     };
 
-    const formatFileName = (fileName) => {
-        const MAX_SIZE = 20;
-        if (fileName.length <= MAX_SIZE) {
-            return fileName;
-        }
-        return fileName.substring(0,MAX_SIZE - 4) + '...';
-    }
-
     return (
         <>
         <input id="fileInput" className="button" type="file" onChange={handleFileChange} />
         <label htmlFor="fileInput" className="buttonLabel">
-            {formatFileName(props.fileName)}
+            {limitFileName(props.fileName, 20)}
         </label>
         </>
     );
