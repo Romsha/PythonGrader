@@ -10,7 +10,7 @@ export default function ResultStats(props) {
     const [currentFile, setCurrentFile] = useState(null);
     const [showingMenu, setShowingMenu] = useState(false);
 
-    const RES_TYPES = {ZIP: 'ZIP', PY: 'PY'};
+    const RES_TYPES = {ZIP: 'ZIP', PY: 'PY', GIT: 'GIT'};
     const SUM_KEYS = ['numClasses', 'numNotEmptyLines', 'numFuncs', 'filesNum'];
 
     const getSafePerc = (value, total) => {
@@ -156,6 +156,7 @@ export default function ResultStats(props) {
                             fileNames={[allData.total.name].concat(Object.keys(allData.files))}
                             fileGrades={[allData.total.grades.totalGrade].concat(Object.values(allData.files).map(grades => grades.totalGrade))} 
                             selectFile={selectFile}
+                            resType={props.data.type === 'GIT' ? 'REPO' : props.data.type}
                             closeMenu={() => setShowingMenu(false)}/> : ''}
         </>
     )

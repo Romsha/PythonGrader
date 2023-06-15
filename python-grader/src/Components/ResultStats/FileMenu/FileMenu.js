@@ -32,7 +32,7 @@ export default function FileMenu(props) {
                 <div className="fileMenuList">
                     <div className="fileMenuItem fileMenuItemZip" onClick={() => props.selectFile(props.fileNames[0])}>
                         <span className="fileMenuIndex">1.</span>
-                        <span className="fileMenuZip">ZIP</span>
+                        <span className="fileMenuZip">{props.resType}</span>
                         <span>{limitFileName(props.fileNames[0], MAX_NAME_LEN-4)}</span>
                         <div />
                         <img src={GaugeIcon} alt="gague icon"/>

@@ -50,7 +50,7 @@ def receiveData():
         return jsonify(handlePythonFile(requestFile.filename, requestFile.stream.read()))
     if requestFile.filename.endswith('.zip'):
         return jsonify(handleZipFile(requestFile.filename, requestFile.stream.read()))
-    return jsonify({'success': False, 'name': requestFile.filename})
+    return jsonify({'success': False, 'type': 'PY', 'name': requestFile.filename})
 
 
 def getRepo(owner, repo):
@@ -70,8 +70,10 @@ def recieveGithubData():
     repo = request.args.get('repo')
     repoZip = getRepo(owner, repo)
     if not repoZip:
-        return jsonify({'success': False, 'name': repo})
-    return jsonify(handleZipFile(repo, repoZip))
+        return jsonify({'success': False, 'type': 'GIT', 'name': repo})
+    res = handleZipFile(repo, repoZip)
+    res['type'] = 'GIT'
+    return jsonify(res)
 
 
 if __name__ == '__main__':
